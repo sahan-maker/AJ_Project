@@ -1086,8 +1086,8 @@ class EnergyAnalysisCanvas(FigureCanvas):
 
         # Normalise energy for display (0–1 scale per row)
         disp = self._energy_history[:n, :]
-        row_min = np.nanmin(disp, axis=1, keepdims=True)
-        row_max = np.nanmax(disp, axis=1, keepdims=True)
+        row_min = np.nanmin(disp, axis=1, keepdims=True, initial=0.0)
+        row_max = np.nanmax(disp, axis=1, keepdims=True, initial=1.0)
         norm = (disp - row_min) / np.where(row_max - row_min > 0.1, row_max - row_min, 1.0)
         norm = np.nan_to_num(norm, nan=0.0)
 

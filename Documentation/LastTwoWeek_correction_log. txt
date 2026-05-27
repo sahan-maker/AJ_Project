@@ -1,0 +1,17 @@
+May 27, 2026 — Summary of recent fixes:
+
+Fixed stability and UI issues in both the v7.2 and v8 simulators: prevented the app from closing on Play by guarding the hop pipeline and logging tracebacks; made tab loading safe so a failing tab shows an error instead of crashing; repaired a matplotlib call that caused the System tab to crash; stabilized the BER/SNR timeline to remove duplicate SNR traces and erratic hop-number jumps; and improved the right-column layout (scrollable panel + sensible minimum sizes) so modulation, message input, and FHSS settings remain readable in fullscreen. Both corrected files compile cleanly.
+Week 7 (v8) — FHSS_SIM_v8_corrected.py
+
+Crash guard (hops): Wrapped SystemOrchestrator.run_hop in try/except and print traceback so Play/hop errors no longer close the app.
+Safe tab loading: Wrapped tab factory calls in try/except; if creation fails the tab shows an error label instead of killing the program.
+System tab crash fix: Fixed a matplotlib misuse (axhline(..., transform=...)) by drawing the separator with Line2D, which resolves the System tab crash.
+BER/SNR timeline stability: Reworked JammingAnalysisCanvas timeline to use a compact x-axis, a persistent twin y-axis, and capped history — removes duplicate SNR traces and hop-jumping.
+Right-column layout: Wrapped the right-side controls in a QScrollArea and applied sensible minimumWidth/minimumHeight + QSizePolicy to key widgets (modulation combo, message input, FHSS settings) so inputs remain readable in fullscreen.
+Sanity check: File compiles (py_compile OK).
+Week 6 (v7.2) — FHSS_SIM_v7.2_corrected.py
+
+Right-column parity: Applied the same scrollable right-column + minimumWidth/minimumHeight and QSizePolicy changes so modulation, message input, and FHSS settings stay readable in fullscreen.
+FHSS settings sizing: Ensured FHSS setting widgets have minimum widths and expanding policies to avoid collapse.
+Modulation & message sizing: Set minimum size for modulation combobox and message input to keep them legible.
+Sanity check: File compiles (py_compile OK).
